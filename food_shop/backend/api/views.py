@@ -152,7 +152,7 @@ class ProductsViewSet(ReadOnlyModelViewSet):
         return Product.objects.select_related(
             "subcategory__category").prefetch_related(
             "product_images"
-        )
+        ).order_by('id')
 
 
 class CategoriesViewSet(ReadOnlyModelViewSet):
