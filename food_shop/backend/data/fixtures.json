@@ -1,0 +1,467 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$testsalt123$b51955d3125aeb5523a78be4b22f4ef7f073d0c923c725e988cf885109d9fc5b",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "Test",
+      "last_name": "Admin",
+      "email": "admin@example.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-01-01T00:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "name": "Овощи и зелень",
+      "slug": "vegetables",
+      "image": "placeholder_1.jpg"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+      "name": "Фрукты и ягоды",
+      "slug": "fruits",
+      "image": "placeholder_2.jpg"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+      "name": "Молочные продукты",
+      "slug": "dairy",
+      "image": "placeholder_1.jpg"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+      "name": "Мясо",
+      "slug": "meat",
+      "image": "placeholder_2.jpg"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+      "name": "Выпечка",
+      "slug": "bakery",
+      "image": "placeholder_1.jpg"
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Помидоры",
+      "slug": "tomatoes",
+      "image": "placeholder_2.jpg",
+      "category": 1
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Огурцы",
+      "slug": "cucumbers",
+      "image": "placeholder_1.jpg",
+      "category": 1
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Картофель",
+      "slug": "potatoes",
+      "image": "placeholder_2.jpg",
+      "category": 1
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 4,
+    "fields": {
+      "name": "Яблоки",
+      "slug": "apples",
+      "image": "placeholder_1.jpg",
+      "category": 2
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 5,
+    "fields": {
+      "name": "Бананы",
+      "slug": "bananas",
+      "image": "placeholder_2.jpg",
+      "category": 2
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 6,
+    "fields": {
+      "name": "Молоко",
+      "slug": "milk",
+      "image": "placeholder_1.jpg",
+      "category": 3
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 7,
+    "fields": {
+      "name": "Сыр",
+      "slug": "cheese",
+      "image": "placeholder_2.jpg",
+      "category": 3
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 8,
+    "fields": {
+      "name": "Говядина",
+      "slug": "beef",
+      "image": "placeholder_1.jpg",
+      "category": 4
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 9,
+    "fields": {
+      "name": "Курица",
+      "slug": "chicken",
+      "image": "placeholder_2.jpg",
+      "category": 4
+    }
+  },
+  {
+    "model": "products.subcategory",
+    "pk": 10,
+    "fields": {
+      "name": "Хлеб",
+      "slug": "bread",
+      "image": "placeholder_1.jpg",
+      "category": 5
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "name": "Помидоры черри",
+      "slug": "cherry-tomatoes",
+      "price": "249.90",
+      "subcategory": 1
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "name": "Помидоры розовые",
+      "slug": "pink-tomatoes",
+      "price": "189.00",
+      "subcategory": 1
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "name": "Огурцы тепличные",
+      "slug": "greenhouse-cucumbers",
+      "price": "129.50",
+      "subcategory": 2
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "name": "Картофель молодой",
+      "slug": "young-potatoes",
+      "price": "79.90",
+      "subcategory": 3
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "name": "Яблоки Гала",
+      "slug": "gala-apples",
+      "price": "149.00",
+      "subcategory": 4
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "name": "Яблоки Гренни Смит",
+      "slug": "granny-smith-apples",
+      "price": "169.00",
+      "subcategory": 4
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "name": "Бананы Эквадор",
+      "slug": "ecuador_bananas",
+      "price": "99.90",
+      "subcategory": 5
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+      "name": "Молоко 3.2%",
+      "slug": "whole_milk",
+      "price": "89.90",
+      "subcategory": 6
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+      "name": "Молоко 2.5%",
+      "slug": "fatmilk",
+      "price": "84.50",
+      "subcategory": 6
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+      "name": "Сыр Российский",
+      "slug": "ru_cheese",
+      "price": "549.00",
+      "subcategory": 7
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+      "name": "Говядина вырезка",
+      "slug": "tenderloin",
+      "price": "899.00",
+      "subcategory": 8
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+      "name": "Куриное филе",
+      "slug": "chicken_fillet",
+      "price": "329.00",
+      "subcategory": 9
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+      "name": "Хлеб белый",
+      "slug": "white_bread",
+      "price": "45.00",
+      "subcategory": 10
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 14,
+    "fields": {
+      "name": "Батон нарезной",
+      "slug": "sliced_loaf",
+      "price": "52.00",
+      "subcategory": 10
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "image": "placeholder_2.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 2,
+    "fields": {
+      "product": 1,
+      "image": "placeholder_1.jpg",
+      "size_order": 1
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 3,
+    "fields": {
+      "product": 2,
+      "image": "placeholder_2.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 4,
+    "fields": {
+      "product": 3,
+      "image": "placeholder_1.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 5,
+    "fields": {
+      "product": 4,
+      "image": "placeholder_2.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 6,
+    "fields": {
+      "product": 5,
+      "image": "placeholder_1.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 7,
+    "fields": {
+      "product": 5,
+      "image": "placeholder_2.jpg",
+      "size_order": 1
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 8,
+    "fields": {
+      "product": 6,
+      "image": "placeholder_1.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 9,
+    "fields": {
+      "product": 7,
+      "image": "placeholder_2.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 10,
+    "fields": {
+      "product": 8,
+      "image": "placeholder_1.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 11,
+    "fields": {
+      "product": 9,
+      "image": "placeholder_2.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 12,
+    "fields": {
+      "product": 10,
+      "image": "placeholder_1.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 13,
+    "fields": {
+      "product": 10,
+      "image": "placeholder_2.jpg",
+      "size_order": 1
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 14,
+    "fields": {
+      "product": 11,
+      "image": "placeholder_1.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 15,
+    "fields": {
+      "product": 12,
+      "image": "placeholder_2.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 16,
+    "fields": {
+      "product": 12,
+      "image": "placeholder_1.jpg",
+      "size_order": 1
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 17,
+    "fields": {
+      "product": 13,
+      "image": "placeholder_2.jpg",
+      "size_order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 18,
+    "fields": {
+      "product": 14,
+      "image": "placeholder_1.jpg",
+      "size_order": 0
+    }
+  }
+]
