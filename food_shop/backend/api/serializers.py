@@ -13,6 +13,7 @@ class ProductReadSerializer(serializers.ModelSerializer):
     subcategory = serializers.CharField(source='subcategory.name', read_only=True)
     category = serializers.CharField(source='subcategory.category.name', read_only=True)
     images = ProductImageSerializer(source='product_images', many=True, read_only=True)
+    price = serializers.DecimalField(max_digits=10, decimal_places=2, coerce_to_string=True)
     class Meta:
         model = Product
         fields = ('name', 'slug', 'subcategory', 'category', 'price', 'images')
