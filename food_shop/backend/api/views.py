@@ -98,7 +98,7 @@ class CartViewSet(mixins.ListModelMixin,
 
     def list(self, request, *args, **kwargs):
         '''
-            Изменеие количества продукта в корзине
+            Просмотр продуктов в корзине
         '''
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
@@ -108,7 +108,7 @@ class CartViewSet(mixins.ListModelMixin,
             'items': serializer.data,
             'total_quantity': total_quantity,
             'total_price': total_price,
-        })
+        }, status=status.HTTP_200_OK)
 
     @action(detail=False, methods=['delete'], url_path='clear_cart')
     def clear_cart(self, request):
