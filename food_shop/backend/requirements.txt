@@ -5,3 +5,4 @@ python-dotenv==1.2.4
 psycopg2==2.9.13
 django_filter
 djoser
+
