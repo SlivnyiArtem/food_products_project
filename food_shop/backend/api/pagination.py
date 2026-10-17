@@ -4,5 +4,5 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class SimplePagination(PageNumberPagination):
-    page_size_query_param = "limit"
-    page_size = int(os.getenv("PAGE_SIZE", 10))
+    page_size_query_param = 'limit'
+    page_size = int(os.getenv('PAGE_SIZE', 10))

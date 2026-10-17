@@ -21,7 +21,7 @@ from api.serializers import (
 
 class CartViewSet(mixins.ListModelMixin, GenericViewSet):
     permission_classes = (IsCartOwner,)
-    http_method_names = ["get", "post", "patch", "delete"]
+    http_method_names = ['get', 'post', 'patch', 'delete']
 
     def get_serializer_class(self):
         if self.request.method in SAFE_METHODS:
@@ -31,11 +31,11 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
     def get_queryset(self):
         return UserCartProduct.objects.filter(
             customer=self.request.user
-        ).select_related("product")
+        ).select_related('product')
 
     @action(
         detail=False,
-        methods=("post",),
+        methods=('post',),
     )
     def add_shopping_cart(self, request):
         """
@@ -43,29 +43,29 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
         """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        product = serializer.validated_data["product"]
-        quantity = serializer.validated_data.get("quantity", 1)
+        product = serializer.validated_data['product']
+        quantity = serializer.validated_data.get('quantity', 1)
         mtm_product, created = UserCartProduct.objects.get_or_create(
             customer=request.user,
             product=product,
-            defaults={"quantity": quantity},
+            defaults={'quantity': quantity},
         )
         if not created:
             mtm_product.quantity += quantity
-            mtm_product.save(update_fields=["quantity"])
+            mtm_product.save(update_fields=['quantity'])
             return Response(
                 data=CardReadSerializer(mtm_product).data,
                 status=status.HTTP_202_ACCEPTED,
             )
         return Response(
             data=CardReadSerializer(mtm_product).data,
-            status=status.HTTP_201_CREATED
+            status=status.HTTP_201_CREATED,
         )
 
     @action(
         detail=False,
-        methods=("patch",),
-        url_path="set_quantity",
+        methods=('patch',),
+        url_path='set_quantity',
     )
     def set_product_quantity(self, request):
         """
@@ -73,17 +73,15 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
         """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        product = serializer.validated_data["product"]
-        quantity = serializer.validated_data.get("quantity", 1)
+        product = serializer.validated_data['product']
+        quantity = serializer.validated_data.get('quantity', 1)
         cart_item = UserCartProduct.objects.filter(
             customer=request.user, product=product
         ).first()
 
         if not cart_item:
             return Response(
-                {"detail": os.getenv(
-                    "PRODUCT_NOT_FOUND_MESSAGE"
-                )},
+                {'detail': os.getenv('PRODUCT_NOT_FOUND_MESSAGE')},
                 status=status.HTTP_404_NOT_FOUND,
             )
 
@@ -91,13 +89,13 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
             cart_item.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         cart_item.quantity = quantity
-        cart_item.save(update_fields=["quantity"])
+        cart_item.save(update_fields=['quantity'])
         return Response(
             data=CardReadSerializer(cart_item).data,
-            status=status.HTTP_202_ACCEPTED
+            status=status.HTTP_202_ACCEPTED,
         )
 
-    @action(detail=True, methods=["delete"], url_path="remove")
+    @action(detail=True, methods=['delete'], url_path='remove')
     def delete_product_from_shopping_cart(self, request, pk):
         """
         Удаление количества продукта в корзине
@@ -112,7 +110,7 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
         if del_cnt > 0:
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(
-            {"detail": os.getenv("PRODUCT_NOT_FOUND_MESSAGE")},
+            {'detail': os.getenv('PRODUCT_NOT_FOUND_MESSAGE')},
             status=status.HTTP_404_NOT_FOUND,
         )
 
@@ -126,21 +124,22 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
         total_quantity = sum(i.quantity for i in queryset)
         return Response(
             {
-                "items": serializer.data,
-                "total_quantity": total_quantity,
-                "total_price": total_price,
+                'items': serializer.data,
+                'total_quantity': total_quantity,
+                'total_price': total_price,
             },
             status=status.HTTP_200_OK,
         )
 
-    @action(detail=False, methods=["delete"], url_path="clear_cart")
+    @action(detail=False, methods=['delete'], url_path='clear_cart')
     def clear_cart(self, request):
         """
         Очистка корзины
         """
         deleted_cnt, _ = self.get_queryset().delete()
-        return Response({"deleted_cnt": deleted_cnt},
-                        status=status.HTTP_204_NO_CONTENT)
+        return Response(
+            {'deleted_cnt': deleted_cnt}, status=status.HTTP_204_NO_CONTENT
+        )
 
 
 class ProductsViewSet(ReadOnlyModelViewSet):
@@ -149,10 +148,11 @@ class ProductsViewSet(ReadOnlyModelViewSet):
     serializer_class = ProductReadSerializer
 
     def get_queryset(self):
-        return Product.objects.select_related(
-            "subcategory__category").prefetch_related(
-            "product_images"
-        ).order_by('id')
+        return (
+            Product.objects.select_related('subcategory__category')
+            .prefetch_related('product_images')
+            .order_by('id')
+        )
 
 
 class CategoriesViewSet(ReadOnlyModelViewSet):
@@ -161,4 +161,4 @@ class CategoriesViewSet(ReadOnlyModelViewSet):
     serializer_class = CategoryReadSerializer
 
     def get_queryset(self):
-        return Category.objects.all().prefetch_related("subcategories")
+        return Category.objects.all().prefetch_related('subcategories')

@@ -6,150 +6,153 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name="Category",
+            name='Category',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("name", models.CharField(max_length=20, unique=True)),
-                ("slug", models.SlugField(max_length=20, unique=True)),
-                ("image", models.ImageField(upload_to="")),
+                ('name', models.CharField(max_length=20, unique=True)),
+                ('slug', models.SlugField(max_length=20, unique=True)),
+                ('image', models.ImageField(upload_to='')),
             ],
             options={
-                "ordering": ("name",),
+                'ordering': ('name',),
             },
         ),
         migrations.CreateModel(
-            name="SubCategory",
+            name='SubCategory',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("name", models.CharField(max_length=20)),
-                ("slug", models.CharField(max_length=20)),
-                ("image", models.ImageField(upload_to="")),
+                ('name', models.CharField(max_length=20)),
+                ('slug', models.CharField(max_length=20)),
+                ('image', models.ImageField(upload_to='')),
                 (
-                    "category",
+                    'category',
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="subcategories",
-                        to="products.category",
+                        related_name='subcategories',
+                        to='products.category',
                     ),
                 ),
             ],
             options={
-                "ordering": ("name",),
+                'ordering': ('name',),
             },
         ),
         migrations.CreateModel(
-            name="Product",
+            name='Product',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("slug", models.SlugField(max_length=20, unique=True)),
-                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
-                ("name", models.CharField(max_length=20)),
+                ('slug', models.SlugField(max_length=20, unique=True)),
                 (
-                    "subcategory",
+                    'price',
+                    models.DecimalField(decimal_places=2, max_digits=10),
+                ),
+                ('name', models.CharField(max_length=20)),
+                (
+                    'subcategory',
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="products.subcategory",
+                        to='products.subcategory',
                     ),
                 ),
             ],
         ),
         migrations.CreateModel(
-            name="ProductImage",
+            name='ProductImage',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("image", models.ImageField(upload_to="")),
-                ("size_order", models.PositiveIntegerField(default=0)),
+                ('image', models.ImageField(upload_to='')),
+                ('size_order', models.PositiveIntegerField(default=0)),
                 (
-                    "product",
+                    'product',
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="product_images",
-                        to="products.product",
+                        related_name='product_images',
+                        to='products.product',
                     ),
                 ),
             ],
             options={
-                "ordering": ("size_order",),
-                "constraints": [
+                'ordering': ('size_order',),
+                'constraints': [
                     models.UniqueConstraint(
-                        fields=("product", "size_order"),
-                        name="product_images_size_order_constraint",
+                        fields=('product', 'size_order'),
+                        name='product_images_size_order_constraint',
                     )
                 ],
             },
         ),
         migrations.CreateModel(
-            name="UserCartProduct",
+            name='UserCartProduct',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("quantity", models.PositiveIntegerField(default=1)),
+                ('quantity', models.PositiveIntegerField(default=1)),
                 (
-                    "customer",
+                    'customer',
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),
                 (
-                    "product",
+                    'product',
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="products_in_carts",
-                        to="products.product",
+                        related_name='products_in_carts',
+                        to='products.product',
                     ),
                 ),
             ],
             options={
-                "constraints": [
+                'constraints': [
                     models.UniqueConstraint(
-                        fields=("customer", "product"), name="unique_product_purchase"
+                        fields=('customer', 'product'),
+                        name='unique_product_purchase',
                     )
                 ],
             },
