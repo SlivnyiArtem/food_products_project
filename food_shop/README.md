@@ -33,7 +33,7 @@ bash ``` git clone <repo-url>```
 source venv/Scripts/activate
 ```
 
-## Перейти в каталог backend (backend_test_project/food_shop/backend)
+## Перейти в каталог backend (food_products_project/food_shop/backend)
 
 ```
 cd backend
@@ -49,7 +49,9 @@ python3 -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-## Собрать и запустить контейнер с <L
+## заполнить (скопировать) .env файл (пример заполнения в .env.example файле
+
+## Собрать и запустить контейнер с БД
 
 ```
 docker compose up --build -d
