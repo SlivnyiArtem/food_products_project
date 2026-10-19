@@ -139,6 +139,5 @@ dmypy.json
 .idea
 .vscode
 
-backend_static/
-static/
+staticfiles/
 media/
