@@ -38,9 +38,7 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
         methods=('post',),
     )
     def add_shopping_cart(self, request):
-        """
-        Добавление товара в корзину
-        """
+        """Добавление товара в корзину."""
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         product = serializer.validated_data['product']
@@ -68,9 +66,7 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
         url_path='set_quantity',
     )
     def set_product_quantity(self, request):
-        """
-        Изменение количества продукта в корзине
-        """
+        """Изменение количества продукта в корзине."""
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         product = serializer.validated_data['product']
@@ -97,9 +93,7 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
 
     @action(detail=True, methods=['delete'], url_path='remove')
     def delete_product_from_shopping_cart(self, request, pk):
-        """
-        Удаление количества продукта в корзине
-        """
+        """Удаление количества продукта в корзине."""
         product = get_object_or_404(Product, pk=pk)
 
         del_cnt, _ = UserCartProduct.objects.filter(
@@ -115,9 +109,7 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
         )
 
     def list(self, request, *args, **kwargs):
-        """
-        Просмотр продуктов в корзине
-        """
+        """Просмотр продуктов в корзине."""
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         total_price = sum(i.quantity * i.product.price for i in queryset)
@@ -133,9 +125,7 @@ class CartViewSet(mixins.ListModelMixin, GenericViewSet):
 
     @action(detail=False, methods=['delete'], url_path='clear_cart')
     def clear_cart(self, request):
-        """
-        Очистка корзины
-        """
+        """Очистка корзины."""
         deleted_cnt, _ = self.get_queryset().delete()
         return Response(
             {'deleted_cnt': deleted_cnt}, status=status.HTTP_204_NO_CONTENT
